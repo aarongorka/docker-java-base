@@ -19,6 +19,7 @@ services:
     image: sonatype/nexus3:latest
     ports:
       - 8081:8081
+      - 18443:18443
     env_file: .env
 
   docker:

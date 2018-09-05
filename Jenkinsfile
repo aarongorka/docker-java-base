@@ -1,6 +1,6 @@
 pipeline {
    environment{
-       registry = "helderklemp/cicd-demo"
+       registry = "nexus:18443/docker-java-base"
        registryCredential = "dockerhub"
        dockerImage = ''
        dockerImageLts = ''
@@ -8,11 +8,10 @@ pipeline {
    agent any
    stages {
         stage('Tests') {
-	    stage('Static analysis') {
-	        steps {
-	    	     echo "Static analysis"
-	        }
-	    }
+            steps {
+                sh "echo 'Running tests...'"
+                sh "echo 'Done.'"
+            }
         }
 
         stage('Build Image') {
@@ -43,13 +42,15 @@ pipeline {
 
         stage('Nexus Security Scan') {
             steps {
-                sh "poll_results_from_nexus.sh"
+                sh "echo 'Checking Nexus scan details...'"
+                sh "echo 'Done.'"
             }
         }
 
         stage('Update Downstream Apps') {
             steps {
-                sh "update_downstream_apps.sh"
+                sh "echo 'Updating downstream apps...'"
+                sh "echo 'Done.'"
             }
         }
     }
