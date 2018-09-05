@@ -19,4 +19,4 @@ dockerPush:
 	docker push $(IMAGE_NAME):latest
 
 nexusLogin:
-	echo "$(NEXUS_PASSWORD)" | docker --insecure-registry=nexus:18443 login https://nexus:18443 -u admin --password-stdin
+	echo "$(NEXUS_PASSWORD)" | docker login https://nexus:18443 -u admin --password-stdin
