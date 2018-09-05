@@ -1,5 +1,5 @@
 ifdef BUILD_ID
-	GIT_SHA = $(shell git rev-parse HEAD | head -c 5)
+	GIT_SHA = $(shell git rev-parse HEAD | head -c 10)
 	BUILD_VERSION = $(BUILD_ID)-$(GIT_SHA)
 else
 	BUILD_VERSION?=local
