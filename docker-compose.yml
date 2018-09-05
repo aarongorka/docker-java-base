@@ -9,10 +9,11 @@ services:
     ports:
       - 8080:8080
     env_file: .env
-#    environment:
-#      DOCKER_HOST: "tcp://docker:2375"
-#    depends_on:
-#      - nexus
+    environment:
+      DOCKER_HOST: "tcp://docker:2375"
+    depends_on:
+      - nexus
+      - docker
     links:
       - nexus:nexus
       - docker:docker
