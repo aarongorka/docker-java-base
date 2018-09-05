@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:lts-alpine
 
 USER root
-RUN apk --update --no-cache add docker py2-pip && \
+RUN apk --update --no-cache add docker py2-pip make && \
 	pip install docker-compose
 USER jenkins

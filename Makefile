@@ -20,21 +20,3 @@ dockerPush:
 
 nexusLogin:
 	echo "$(NEXUS_PASSWORD)" | docker --insecure-registry=nexus:18443 login https://nexus:18443 -u admin --password-stdin
-
-###########
-# ENVFILE #
-###########
-# Create .env based on .env.template if .env does not exist
-.env:
-	@echo "Create .env with .env.template"
-	cp .env.template .env
-
-# Create/Overwrite .env with $(DOTENV)
-dotenv:
-	@echo "Overwrite .env with $(DOTENV)"
-	cp $(DOTENV) .env
-
-$(DOTENV):
-	$(info overwriting .env file with $(DOTENV))
-	cp $(DOTENV) .env
-.PHONY: $(DOTENV)

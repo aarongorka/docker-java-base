@@ -8,7 +8,6 @@ services:
       - jenkins_home:/var/jenkins_home:Z
     ports:
       - 8080:8080
-    env_file: .env
     environment:
       DOCKER_HOST: "tcp://docker:2375"
     depends_on:
@@ -20,16 +19,19 @@ services:
 
   nexus:
     image: sonatype/nexus3:latest
+    volumes:
+      - nexus_data:/nexus-data:Z
     ports:
       - 8081:8081
       - 18443:18443
-    env_file: .env
 
   docker:
     image: docker:dind
     privileged: true
+    command: --insecure-registry=nexus:18443
     ports:
       - 2375:2375
 
 volumes:
     jenkins_home:
+    nexus_data:
