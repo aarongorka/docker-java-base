@@ -3,6 +3,9 @@ pipeline {
        NEXUS_PASSWORD = credentials('NEXUS_PASSWORD')
    }
    agent any
+   triggers {
+       cron('* H * * 1-5')
+   }
    stages {
         stage('Tests') {
             steps {
