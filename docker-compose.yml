@@ -1,16 +1,18 @@
 version: '2.2'
 services:
   jenkins:
-    image: jenkins/jenkins:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
     volumes:
       - jenkins_home:/var/jenkins_home:Z
     ports:
       - 8080:8080
     env_file: .env
-    environment:
-      DOCKER_HOST: "tcp://docker:2375"
-    depends_on:
-      - nexus
+#    environment:
+#      DOCKER_HOST: "tcp://docker:2375"
+#    depends_on:
+#      - nexus
     links:
       - nexus:nexus
       - docker:docker
