@@ -5,7 +5,7 @@ else
 	BUILD_VERSION?=local
 endif
 
-IMAGE_NAME ?= localhost:18443/java-base
+IMAGE_NAME ?= nexus:18443/java-base
 
 ##################
 # PUBLIC TARGETS #
