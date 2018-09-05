@@ -18,6 +18,9 @@ dockerPush:
 	docker push $(IMAGE_NAME):$(BUILD_VERSION)
 	docker push $(IMAGE_NAME):latest
 
+nexusLogin:
+	echo "$(NEXUS_PASSWORD)" | docker login http://nexus:18443 -u admin --password-stdin
+
 ###########
 # ENVFILE #
 ###########
