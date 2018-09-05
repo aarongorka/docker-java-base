@@ -1,0 +1,31 @@
+version: '2.2'
+services:
+  jenkins:
+    image: jenkins/jenkins:latest
+    volumes:
+      - jenkins_home:/var/jenkins_home:Z
+    ports:
+      - 8080:8080
+    env_file: .env
+    environment:
+      DOCKER_HOST: "tcp://docker:2375"
+    depends_on:
+      - nexus
+    links:
+      - nexus:nexus
+      - docker:docker
+
+  nexus:
+    image: sonatype/nexus3:latest
+    ports:
+      - 8081:8081
+    env_file: .env
+
+  docker:
+    image: docker:dind
+    privileged: true
+    ports:
+      - 2375:2375
+
+volumes:
+    jenkins_home:
