@@ -1,4 +1,7 @@
 pipeline {
+   environment {
+       NEXUS_PASSWORD = credentials('NEXUS_PASSWORD')
+   }
    agent any
    stages {
         stage('Tests') {
@@ -16,7 +19,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'make dockerPush'
+                sh 'make nexusLogin dockerPush'
             }
         }
 
