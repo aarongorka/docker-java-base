@@ -1,3 +1,5 @@
+import jenkins.model.*
+jenkins = Jenkins.instance
 pipeline {
    environment{
        registry = "nexus:18443/docker-java-base"
