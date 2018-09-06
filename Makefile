@@ -12,10 +12,13 @@ IMAGE_NAME ?= nexus:18443/java-base
 ##################
 dockerBuild:
 	docker build -t $(IMAGE_NAME):$(BUILD_VERSION) .
-	docker tag $(IMAGE_NAME):$(BUILD_VERSION) $(IMAGE_NAME):latest
 
 dockerPush:
 	docker push $(IMAGE_NAME):$(BUILD_VERSION)
+
+dockerPushLatest:
+	docker pull $(IMAGE_NAME):$(BUILD_VERSION)
+	docker tag $(IMAGE_NAME):$(BUILD_VERSION) $(IMAGE_NAME):latest
 	docker push $(IMAGE_NAME):latest
 
 nexusLogin:

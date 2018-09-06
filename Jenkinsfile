@@ -14,15 +14,9 @@ pipeline {
             }
         }
 
-        stage('Build Image') {
+        stage('Build & Push Image') {
             steps {
-                sh 'make dockerBuild'
-            }
-        }
-
-        stage('Push Image') {
-            steps {
-                sh 'make nexusLogin dockerPush'
+                sh 'make dockerBuild nexusLogin dockerPush'
             }
         }
 
@@ -33,12 +27,12 @@ pipeline {
             }
         }
 
-        stage('Update Downstream Apps') {
+        stage('Push Latest Tag') {
+            when { branch 'master' }
             steps {
-                sh "echo 'Updating downstream apps...'"
-                sh "echo 'Done.'"
+                sh 'make nexusLogin dockerPushLatest'
             }
         }
+
     }
-    
 }
