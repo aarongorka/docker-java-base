@@ -31,7 +31,7 @@ ENTRYPOINT [ "java","-Djava.security.egd=file:/dev/./unrandom","-jar","/app.jar"
 Jenkinsfile:
 ```Groovy
 pipeline {
-  triggers { upstream(upstreamProjects: 'docker-java-base', threshold: hudson.model.Result.SUCCESS) }
+  triggers { upstream(upstreamProjects: 'docker-java-base/master', threshold: hudson.model.Result.SUCCESS) }
 // ...
 }
 ```
